@@ -17,13 +17,13 @@
 
     /* 1. HERO SEKCE - Úvod přes celou obrazovku */
     .hero {
-      height: 100vh; /* Výška celé obrazovky */
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      /* Sem dej odkaz na svůj velký obrázek na pozadí */
+      /* Nezapomeň sem dát odkaz na svůj velký obrázek na pozadí */
       background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('ODKAZ_NA_TVUJ_OBRAZEK.jpg') center/cover no-repeat;
     }
 
@@ -64,13 +64,13 @@
     /* 2. SCROLL ANIMACE (CSS třídy) */
     .hidden {
       opacity: 0;
-      transform: translateY(50px); /* Prvek je posunutý o 50px dolů */
-      transition: all 0.8s ease-out; /* Plynulý přechod */
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
     }
 
     .show {
       opacity: 1;
-      transform: translateY(0); /* Prvek vyjede na původní místo */
+      transform: translateY(0);
     }
 
     /* Karty a sekce */
@@ -85,6 +85,7 @@
     a.button {
       display: inline-block;
       margin-top: 20px;
+      margin-right: 10px;
       padding: 12px 24px;
       color: white;
       background: #007bff;
@@ -95,6 +96,14 @@
     
     a.button:hover {
       background: #0056b3;
+    }
+
+    /* Tmavší tlačítko pro sekundární odkazy */
+    a.button.secondary {
+      background: #333;
+    }
+    a.button.secondary:hover {
+      background: #555;
     }
   </style>
 </head>
@@ -116,29 +125,32 @@
     <section class="section-box hidden">
       <h3>Projekty & Ukázky práce</h3>
       <p>Podívej se na můj nejnovější Showreel a ukázky toho, jak automatizuji své workflow pomocí programování.</p>
-      <a href="#" class="button">Přehrát Showreel</a>
+      <a href="ODKAZ_NA_TVUJ_YOUTUBE" target="_blank" class="button">🎬 Přehrát Showreel</a>
+      <a href="ODKAZ_NA_TVUJ_GITHUB" target="_blank" class="button secondary">💻 Vývojářské portfolio</a>
     </section>
 
     <section class="section-box hidden">
       <h3>Dokumenty ke stažení</h3>
-      <a href="https://ondyj.github.io/Prezentace/zui.pdf" target="_blank" class="button">Prezentace ZUI</a>
-      <a href="ODKAZ_NA_TVUJ_NOVY_ZIVOTOPIS.pdf" target="_blank" class="button">Stáhnout nové CV</a>
+      <p>Můj aktuální životopis se všemi zkušenostmi a technologiemi.</p>
+      <a href="ODKAZ_NA_TVUJ_NOVY_ZIVOTOPIS.pdf" target="_blank" class="button">📄 Stáhnout nové CV</a>
     </section>
 
   </div>
 
   <script>
-    // Tento kód sleduje, jak moc scrolluješ.
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        // Pokud prvek vstoupí do viditelné části obrazovky...
         if (entry.isIntersecting) {
-          entry.target.classList.add('show'); // Přidá mu třídu 'show' (vyskočí a zviditelní se)
+          // Když k prvku doscrolluješ, přidá se třída 'show' a prvek vyjede
+          entry.target.classList.add('show');
+        } else {
+          // NOVINKA: Když prvek opustí obrazovku (scrolluješ pryč), třída se odebere
+          // Tím pádem se prvek znovu skryje a je připraven na novou animaci
+          entry.target.classList.remove('show');
         }
       });
     });
 
-    // Vybere všechny prvky s třídou 'hidden' a začne je sledovat
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
   </script>
