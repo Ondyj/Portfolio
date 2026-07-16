@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ondřej Jócsik | Portfolio</title>
   <style>
-    /* ZÁKLADNÍ STYL (SVĚTLÝ REŽIM) */
+    /* ZÁKLADNÍ STYL (Plynulé přechody pro Dark Mode) */
     html {
-      scroll-behavior: smooth; /* Plynulé posouvání při kliknutí na odkaz */
+      scroll-behavior: smooth;
     }
 
     body {
@@ -18,34 +18,46 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       overflow-x: hidden;
       line-height: 1.6;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-/* --- NAVIGAČNÍ LIŠTA --- */
+    /* --- NAVIGAČNÍ LIŠTA --- */
     #navbar {
       position: fixed;
       top: -100px;
       left: 0;
       width: 100%;
-      padding: 20px 0;
+      padding: 15px 40px; /* Zvětšeno odsazení na krajích */
+      box-sizing: border-box; /* Aby padding nerozbil šířku 100% */
       display: flex;
-      justify-content: center;
-      gap: 40px;
+      justify-content: space-between; /* Rozdělí prvky na kraje a doprostřed */
+      align-items: center;
       z-index: 1000;
       background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      
-      /* ÚPRAVA ZDE: Výraznější stín pro lepší ohraničení */
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
-      
-      /* ÚPRAVA ZDE: Jemná spodní linka pro jasný okraj */
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
-      
-      transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      transition: top 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border-color 0.4s ease;
     }
 
     #navbar.scrolled {
-      top: 0; /* Když má tuto třídu, sjede dolů na viditelné místo */
+      top: 0;
+    }
+
+    /* Logo / Iniciály vlevo */
+    .nav-logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      color: #111111;
+      transition: color 0.4s ease;
+    }
+
+    /* Odkazy uprostřed */
+    .nav-links {
+      display: flex;
+      gap: 30px;
     }
 
     #navbar a {
@@ -57,10 +69,24 @@
     }
 
     #navbar a:hover {
-      color: #007bff; /* Modrá barva při najetí myší */
+      color: #007bff;
     }
 
-    /* 1. HERO SEKCE - Úvod přes celou obrazovku */
+    /* Tlačítko pro Dark Mode vpravo */
+    .theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      transition: transform 0.3s ease;
+    }
+    
+    .theme-toggle:hover {
+      transform: scale(1.1); /* Při najetí myší se mírně zvětší */
+    }
+
+    /* 1. HERO SEKCE */
     .hero {
       height: 100vh;
       display: flex;
@@ -71,6 +97,7 @@
       background: #ffffff;
       border-bottom: 1px solid #eaeaea;
       position: relative;
+      transition: background-color 0.4s ease, border-color 0.4s ease;
     }
 
     .hero h1 {
@@ -79,6 +106,7 @@
       font-weight: 800;
       letter-spacing: -1px;
       color: #111111;
+      transition: color 0.4s ease;
     }
 
     .hero .subtitle {
@@ -98,6 +126,7 @@
       background: #f0f0f0;
       border-radius: 50px;
       display: inline-block;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
 
     .scroll-indicator {
@@ -114,7 +143,7 @@
       60% { transform: translateY(-7px); }
     }
 
-    /* Kontejner pro zbytek obsahu */
+    /* Kontejner */
     .container {
       max-width: 800px;
       margin: 0 auto;
@@ -140,7 +169,8 @@
       margin-bottom: 50px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       border: 1px solid #f0f0f0;
-      scroll-margin-top: 100px; /* Zabrání tomu, aby lišta zakryla nadpis po kliknutí na odkaz */
+      scroll-margin-top: 100px;
+      transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
     }
 
     .section-box h3 {
@@ -150,6 +180,7 @@
       border-bottom: 2px solid #f0f0f0;
       padding-bottom: 10px;
       margin-bottom: 20px;
+      transition: color 0.4s ease, border-color 0.4s ease;
     }
 
     /* Tlačítka */
@@ -188,13 +219,82 @@
       background: #f8f9fa;
       transform: translateY(-2px);
     }
+
+    /* =========================================
+       DARK MODE STYLY (přepíše barvy, když je aktivní)
+       ========================================= */
+    body.dark-mode {
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode #navbar {
+      background: rgba(17, 17, 17, 0.85);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark-mode .nav-logo,
+    body.dark-mode #navbar a {
+      color: #ffffff;
+    }
+    
+    body.dark-mode #navbar a:hover {
+      color: #007bff;
+    }
+
+    body.dark-mode .hero {
+      background: #111111;
+      border-bottom: 1px solid #222222;
+    }
+
+    body.dark-mode .hero h1 {
+      color: #ffffff;
+    }
+
+    body.dark-mode .hero h2 {
+      background: #2a2a2a;
+      color: #ffffff;
+    }
+
+    body.dark-mode .section-box {
+      background: #1a1a1a;
+      border: 1px solid #333333;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    body.dark-mode .section-box h3 {
+      color: #ffffff;
+      border-bottom: 2px solid #333333;
+    }
+
+    /* Změna barev tlačítek v Dark Mode */
+    body.dark-mode a.button {
+      background: #007bff; /* Modrá vynikne ve tmě lépe než černá na černé */
+    }
+    body.dark-mode a.button:hover {
+      background: #0056b3;
+    }
+    
+    body.dark-mode a.button.secondary {
+      background: #1a1a1a;
+      color: #ffffff;
+      border: 2px solid #ffffff;
+    }
+    body.dark-mode a.button.secondary:hover {
+      background: #333333;
+    }
   </style>
 </head>
 <body>
 
   <nav id="navbar">
-    <a href="#portfolio">Portfolio</a>
-    <a href="#kontakt">Kontakt</a>
+    <div class="nav-logo">OJ.</div>
+    <div class="nav-links">
+      <a href="#portfolio">Portfolio</a>
+      <a href="#kontakt">Kontakt</a>
+    </div>
+    <button class="theme-toggle" id="theme-btn">🌙</button>
   </nav>
 
   <header class="hero">
@@ -207,7 +307,7 @@
     
 <section class="section-box hidden">
       <h3>O mně</h3>
-      <p>Střihu videa se na naplno věnuji poslední dva roky. Jsem samostatný, pracovitý a nedělá mi nejmenší problém se rychle přizpůsobit jakémukoliv vizuálnímu stylu. Mým cílem je vždy doručit výsledek, se kterým bude klient spokojen. Své projekty stříhám a kompletně zpracovávám v <strong>DaVinci Resolve Studio</strong>.</p>
+      <p>Střihu videa se naplno věnuji poslední dva roky. Jsem samostatný, pracovitý a nedělá mi nejmenší problém se rychle přizpůsobit jakémukoliv vizuálnímu stylu. Mým cílem je vždy doručit výsledek, se kterým bude klient spokojen. Své projekty stříhám a kompletně zpracovávám v <strong>DaVinci Resolve Studio</strong>.</p>
     </section>
 
     <section id="portfolio" class="section-box hidden">
@@ -235,7 +335,6 @@
     const navbar = document.getElementById('navbar');
     
     window.addEventListener('scroll', () => {
-      // Pokud odscrolluješ více než 100 pixelů dolů, lišta vyjede
       if (window.scrollY > 100) {
         navbar.classList.add('scrolled');
       } else {
@@ -258,6 +357,21 @@
 
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
+
+    // 3. Logika pro Dark Mode
+    const themeBtn = document.getElementById('theme-btn');
+    
+    themeBtn.addEventListener('click', () => {
+      // Přepne třídu dark-mode na elementu body
+      document.body.classList.toggle('dark-mode');
+      
+      // Změní ikonku podle aktuálního režimu
+      if (document.body.classList.contains('dark-mode')) {
+        themeBtn.textContent = '☀️'; // Sluníčko pro návrat do světlého
+      } else {
+        themeBtn.textContent = '🌙'; // Měsíček pro tmavý
+      }
+    });
   </script>
 
 </body>
