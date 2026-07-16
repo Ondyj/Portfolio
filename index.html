@@ -37,13 +37,24 @@
     body.dark-mode .icon-sun { display: block; }
     body.dark-mode .icon-moon { display: none; }
 
-    /* 1. HERO SEKCE */
+    /* --- 1. HERO SEKCE (ANIMOVANÝ GRADIENT) --- */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .hero {
       height: 100vh; display: flex; flex-direction: column; justify-content: center;
-      align-items: center; text-align: center; background: #ffffff;
+      align-items: center; text-align: center; 
+      /* Plynulý přeliv světlých barev */
+      background: linear-gradient(-45deg, #ffffff, #f0f4f8, #e1e8ed, #ffffff);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite; /* 15 sekundový pomalý cyklus */
       border-bottom: 1px solid #eaeaea; position: relative;
-      transition: background-color 0.4s ease, border-color 0.4s ease;
+      transition: border-color 0.4s ease;
     }
+    
     .hero h1 { font-size: 4.5rem; margin: 0; font-weight: 800; letter-spacing: -1px; color: #111111; transition: color 0.4s ease; }
     .hero .subtitle { color: #888888; font-size: 1.2rem; margin-top: 5px; margin-bottom: 25px; }
     .scroll-indicator { position: absolute; bottom: 40px; font-size: 1.5rem; animation: bounce 2s infinite; color: #555555; }
@@ -56,7 +67,8 @@
     /* KONTEJNER A SEKCE */
     .container { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
     
-    /* SCROLL ANIMACE */
+    /* --- SCROLL ANIMACE PRO VŠECHNY PRVKY --- */
+    /* Zajišťuje skrytí a posunutí dolů. Přidáno ke každému "čtverečku" pro hezčí efekt */
     .hidden { opacity: 0; transform: translateY(40px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
     .show { opacity: 1; transform: translateY(0); }
 
@@ -84,8 +96,8 @@
     .portfolio-item {
       display: flex; justify-content: center; align-items: center;
       background-color: #f0f0f0; border-radius: 12px;
-      aspect-ratio: 16 / 9; /* Pokud chceš čistý čtverec, přepiš 16 / 9 na 1 / 1 */
-      text-decoration: none; color: #333; font-size: 2.5rem;
+      aspect-ratio: 16 / 9; /* Přepiš na 1 / 1 pro dokonalý čtverec */
+      text-decoration: none; color: #333;
       transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
       background-size: cover; background-position: center; position: relative;
       overflow: hidden;
@@ -93,7 +105,6 @@
     .portfolio-item:hover {
       transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
-    /* Ikonka Play přes obrázek */
     .play-icon {
       background: rgba(0,0,0,0.6); color: white; border-radius: 50%;
       width: 50px; height: 50px; display: flex; justify-content: center; align-items: center;
@@ -122,14 +133,18 @@
     body.dark-mode .nav-logo, body.dark-mode #navbar a.text-link, body.dark-mode .nav-icon, body.dark-mode .theme-toggle { color: #ffffff; }
     body.dark-mode #navbar a.text-link:hover, body.dark-mode .nav-icon:hover, body.dark-mode .theme-toggle:hover { color: #007bff; }
     
-    body.dark-mode .hero { background: #111111; border-bottom: 1px solid #222222; }
+    /* Změna gradientu pro Dark Mode */
+    body.dark-mode .hero { 
+      background: linear-gradient(-45deg, #111111, #1a1a24, #0f172a, #111111);
+      background-size: 400% 400%;
+      border-bottom: 1px solid #222222; 
+    }
     body.dark-mode .hero h1 { color: #ffffff; }
     
     body.dark-mode .section-box { background: #1a1a1a; border: 1px solid #333333; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
     body.dark-mode .section-box h3 { color: #ffffff; border-bottom: 2px solid #333333; }
     
     body.dark-mode .client-tag { background: #333; color: #ddd; }
-    
     body.dark-mode .portfolio-item { background-color: #2a2a2a; }
     
     body.dark-mode .contact-form input, body.dark-mode .contact-form textarea { background: #222; border-color: #444; color: #fff; }
@@ -189,9 +204,9 @@
       <h3>Pro koho jsem stříhal</h3>
       <p>Během své praxe jsem měl možnost podílet se na tvorbě videí pro tyto tvůrce a projekty:</p>
       <div class="clients-grid">
-        <div class="client-tag">Jméno Youtubera</div>
-        <div class="client-tag">Herní Kanál XYZ</div>
-        <div class="client-tag">Další Klient</div>
+        <div class="client-tag hidden">Jméno Youtubera</div>
+        <div class="client-tag hidden">Herní Kanál XYZ</div>
+        <div class="client-tag hidden">Další Klient</div>
       </div>
     </section>
 
@@ -200,19 +215,19 @@
       <p>Kliknutím na náhled si video přehrajete přímo na YouTube.</p>
       
       <div class="portfolio-grid">
-        <a href="ODKAZ_NA_YT_VIDEO_1" target="_blank" class="portfolio-item">
+        <a href="ODKAZ_NA_YT_VIDEO_1" target="_blank" class="portfolio-item hidden" style="background-image: url('ODKAZ_NA_OBRAZEK_1.jpg');">
           <div class="play-icon">▶</div>
         </a>
         
-        <a href="ODKAZ_NA_YT_VIDEO_2" target="_blank" class="portfolio-item">
+        <a href="ODKAZ_NA_YT_VIDEO_2" target="_blank" class="portfolio-item hidden" style="background-image: url('ODKAZ_NA_OBRAZEK_2.jpg');">
           <div class="play-icon">▶</div>
         </a>
 
-        <a href="ODKAZ_NA_YT_VIDEO_3" target="_blank" class="portfolio-item">
+        <a href="ODKAZ_NA_YT_VIDEO_3" target="_blank" class="portfolio-item hidden" style="background-image: url('ODKAZ_NA_OBRAZEK_3.jpg');">
           <div class="play-icon">▶</div>
         </a>
         
-        <a href="ODKAZ_NA_YT_VIDEO_4" target="_blank" class="portfolio-item">
+        <a href="ODKAZ_NA_YT_VIDEO_4" target="_blank" class="portfolio-item hidden" style="background-image: url('ODKAZ_NA_OBRAZEK_4.jpg');">
           <div class="play-icon">▶</div>
         </a>
       </div>
@@ -224,11 +239,9 @@
       
       <form action="https://formsubmit.co/cvockoedits@gmail.com" method="POST" class="contact-form">
         <input type="hidden" name="_captcha" value="false">
-        
         <input type="text" name="Jméno" placeholder="Vaše jméno nebo přezdívka" required>
         <input type="email" name="Email" placeholder="Váš e-mail pro odpověď" required>
         <textarea name="Zpráva" placeholder="Popište mi, s čím potřebujete pomoct..." rows="5" required></textarea>
-        
         <button type="submit">Odeslat zprávu</button>
       </form>
     </section>
@@ -243,7 +256,7 @@
       else { navbar.classList.remove('scrolled'); }
     });
 
-    // 2. Opravená logika pro objevování sekcí
+    // 2. Opravená logika pro objevování sekcí i čtverečků!
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -252,8 +265,11 @@
           entry.target.classList.remove('show');
         }
       });
-    }, { threshold: 0.1 });
+    }, { 
+      threshold: 0.1 // Stačí, když je prvek vidět z 10 %, a animace se spustí
+    });
 
+    // Sleduje VŠECHNY prvky s třídou .hidden (tedy sekce, kartičky i náhledovky)
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
 
