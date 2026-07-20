@@ -85,9 +85,17 @@
 
     /* MŘÍŽKA KLIENTŮ */
     .clients-grid { display: flex; flex-wrap: wrap; gap: 15px; }
-    .client-tag {
-      background: #f0f0f0; padding: 10px 20px; border-radius: 50px; font-weight: 600;
-      color: #333; transition: background 0.3s ease, color 0.3s ease;
+.client-tag {
+      background: #f0f0f0; 
+      padding: 6px 20px 6px 6px; 
+      border-radius: 50px; 
+      font-weight: 600;
+      color: #333; 
+      text-decoration: none; /* <-- Tohle zabrání podtržení textu odkazu */
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     /* MŘÍŽKA YOUTUBE VIDEÍ (PORTFOLIO) */
