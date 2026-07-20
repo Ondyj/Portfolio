@@ -54,6 +54,22 @@
       border-bottom: 1px solid #eaeaea; position: relative;
       transition: border-color 0.4s ease;
     }
+
+    /* PODNADPISY PRO KLIENTY V PORTFOLIu */
+    .portfolio-client-title {
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      color: #111111;
+      border-left: 3px solid #007bff;
+      padding-left: 12px;
+      font-weight: 600;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode .portfolio-client-title { 
+      color: #ffffff; 
+    }
     
     .hero h1 { font-size: 4.5rem; margin: 0; font-weight: 800; letter-spacing: -1px; color: #111111; transition: color 0.4s ease; }
     .hero .subtitle { color: #888888; font-size: 1.2rem; margin-top: 5px; margin-bottom: 25px; }
@@ -255,24 +271,50 @@
       </div>
     </section>
 
-    <section id="portfolio" class="section-box hidden">
+<section id="portfolio" class="section-box hidden">
       <h3>Ukázky práce</h3>
       <p>Kliknutím na náhled si video přehrajete přímo na YouTube.</p>
       
+      <h4 class="portfolio-client-title hidden">Kamilius1</h4>
       <div class="portfolio-grid">
         <a href="https://www.youtube.com/watch?v=dlQFVXs0JQE" target="_blank" class="portfolio-item hidden" style="background-image: url('kamil1.jpg');">
           <div class="play-icon">▶</div>
         </a>
-        <a href="ODKAZ_NA_YT_VIDEO_2" target="_blank" class="portfolio-item hidden" style="background-image: url('ODKAZ_NA_OBRAZEK_2.jpg');">
-          <div class="play-icon">▶</div>
-        </a>
-        <a href="ODKAZ_NA_YT_VIDEO_3" target="_blank" class="portfolio-item hidden" style="background-image: url('ODKAZ_NA_OBRAZEK_3.jpg');">
-          <div class="play-icon">▶</div>
-        </a>
-        <a href="ODKAZ_NA_YT_VIDEO_4" target="_blank" class="portfolio-item hidden" style="background-image: url('ODKAZ_NA_OBRAZEK_4.jpg');">
+        <a href="ODKAZ_NA_YT_VIDEO_KAMIL_2" target="_blank" class="portfolio-item hidden" style="background-image: url('kamil2.jpg');">
           <div class="play-icon">▶</div>
         </a>
       </div>
+
+      <h4 class="portfolio-client-title hidden">Cvočko</h4>
+      <div class="portfolio-grid">
+        <a href="ODKAZ_NA_YT_VIDEO_CVOCKO_1" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko1.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="ODKAZ_NA_YT_VIDEO_CVOCKO_2" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko2.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+      <h4 class="portfolio-client-title hidden">Vláďa Kadlec Daily</h4>
+      <div class="portfolio-grid">
+        <a href="ODKAZ_NA_YT_VIDEO_VLADA_1" target="_blank" class="portfolio-item hidden" style="background-image: url('vlada1.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="ODKAZ_NA_YT_VIDEO_VLADA_2" target="_blank" class="portfolio-item hidden" style="background-image: url('vlada2.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+      <h4 class="portfolio-client-title hidden">Touken</h4>
+      <div class="portfolio-grid">
+        <a href="ODKAZ_NA_YT_VIDEO_TOUKEN_1" target="_blank" class="portfolio-item hidden" style="background-image: url('touken1.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="ODKAZ_NA_YT_VIDEO_TOUKEN_2" target="_blank" class="portfolio-item hidden" style="background-image: url('touken2.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
     </section>
 
     <section id="kontakt" class="section-box hidden">
