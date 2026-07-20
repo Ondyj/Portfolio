@@ -90,8 +90,11 @@
       overflow: hidden;
     }
 
-    .portfolio-item-short:hover {
-      transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+.portfolio-item-short:hover .play-icon { 
+      background: rgba(0, 123, 255, 0.8); 
+      border-color: #007bff;
+      opacity: 1;
+      transform: scale(1.1); 
     }
     
     /* Animace ikonky pro Shorts */
@@ -177,6 +180,7 @@
     .portfolio-item:hover {
       transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
+    
 /* TLAČÍTKO PLAY NA NÁHLEDOVKÁCH */
     .play-icon {
       background: rgba(255, 255, 255, 0.15); /* Velmi průhledná vrstva */
@@ -193,12 +197,19 @@
       border: 2px solid rgba(255, 255, 255, 0.6); /* Tenký bílý okraj */
       text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Stín pro šipku, aby byla čitelná */
       transition: all 0.3s ease;
+      
+      /* NOVÉ: Schování tlačítka na začátku */
+      opacity: 0; 
+      transform: scale(0.8); /* Tlačítko je na začátku lehce zmenšené */
     }
     
     .portfolio-item:hover .play-icon { 
       background: rgba(0, 123, 255, 0.8); /* Při najetí zmodrá */
       border-color: #007bff;
-      transform: scale(1.1); /* Efektně se mírně zvětší */
+      
+      /* NOVÉ: Zobrazení tlačítka a jeho zvětšení */
+      opacity: 1; 
+      transform: scale(1.1); /* Efektně se mírně zvětší a vyskočí */
     }
 
     /* KONTAKTNÍ FORMULÁŘ */
