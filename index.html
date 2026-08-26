@@ -258,27 +258,6 @@
     body.dark-mode .contact-form input, body.dark-mode .contact-form textarea { background: #222; border-color: #444; color: #fff; }
     body.dark-mode .contact-form button { background: #007bff; }
     body.dark-mode .contact-form button:hover { background: #0056b3; }
-
-.portfolio-item {
-  position: relative; /* Důležité: drží popisek uvnitř odkazu */
-}
-
-.video-label {
-  position: absolute;
-  bottom: 5px; /* Změněno z top na bottom – posune popisek dolů */
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.75); /* Poloprůhledné černé pozadí */
-  color: #ffffff;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-align: center;
-  white-space: nowrap; /* Zabrání zalomení textu na dva řádky */
-  pointer-events: none; /* Kliknutí projde skrz na video */
-  z-index: 2;
-}
     
     /* Zelená hláška v tmavém režimu */
     body.dark-mode .form-message.success { background: #1b4b2e; color: #8fdfaa; border-color: #286b43; }
@@ -327,8 +306,8 @@
     </section>
 
 <section id="klienti" class="section-box hidden">
-      <h3>Pro koho jsem stříhal/stříhám</h3>
-      <p>Během své praxe jsem měl možnost podílet se na tvorbě videí pro tyto tvůrce:</p>
+      <h3>Pro koho jsem stříhal</h3>
+      <p>Během své praxe jsem měl možnost podílet se na tvorbě videí pro tyto tvůrce a projekty:</p>
       
       <div class="clients-grid">
         
@@ -362,32 +341,8 @@
 
 <section id="portfolio" class="section-box hidden">
       <h3>Ukázky práce</h3>
-
-<h4 class="portfolio-client-title hidden">Cvočko</h4>
-      <div class="portfolio-grid">
-        <a href="https://www.youtube.com/watch?v=9iy6WJOGr74" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko1.jpg');">
-          <div class="play-icon">▶</div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=L_OZv2hIMiE&t" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko22.jpg');">
-          <div class="play-icon">▶</div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=-QBvK5GDUMI" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko4.jpg');">
-          <div class="play-icon">▶</div>
-        </a>
-      </div>
-
-      <div class="portfolio-grid">
-        <a href="https://www.youtube.com/watch?v=xDfZIVSJ_TI" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko3.jpg');">
-          <div class="video-label">Dynamický hudební střih s dotáčením scén</div>
-          <div class="play-icon">▶</div>
-        </a>
-        <a href="https://www.youtube.com/watch?v=aawqFDzqREo&t" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko5.jpg');">
-          <div class="video-label">Multicam střih ze 4 pohledů</div>
-          <div class="play-icon">▶</div>
-        </a>
-      </div>
-
-        <h4 class="portfolio-client-title hidden">Kamilius1</h4>
+      
+      <h4 class="portfolio-client-title hidden">Kamilius1</h4>
       <div class="portfolio-grid">
         <a href="https://www.youtube.com/watch?v=dlQFVXs0JQE" target="_blank" class="portfolio-item hidden" style="background-image: url('kamil1.jpg');">
           <div class="play-icon">▶</div>
@@ -400,7 +355,29 @@
         </a>
       </div>
 
-      <h4 class="portfolio-client-title hidden">Restt Daily (Každodenní Stream VODs/Základní střih)</h4>
+      <h4 class="portfolio-client-title hidden">Cvočko</h4>
+      <div class="portfolio-grid">
+        <a href="https://www.youtube.com/watch?v=9iy6WJOGr74" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko1.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=L_OZv2hIMiE&t" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko22.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=xDfZIVSJ_TI" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko3.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+      <div class="portfolio-grid">
+        <a href="https://www.youtube.com/watch?v=-QBvK5GDUMI" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko4.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=aawqFDzqREo&t" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko5.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+      <h4 class="portfolio-client-title hidden">Restt Daily</h4>
       <div class="portfolio-grid">
         <a href="https://www.youtube.com/watch?v=Fy_pCWBofWU" target="_blank" class="portfolio-item hidden" style="background-image: url('restt1.jpg');">
           <div class="play-icon">▶</div>
@@ -413,7 +390,7 @@
         </a>
       </div>
 
-      <h4 class="portfolio-client-title hidden">Vláďa Kadlec Daily (Každodenní Stream VODs/Základní střih)</h4>
+      <h4 class="portfolio-client-title hidden">Vláďa Kadlec Daily</h4>
       <div class="portfolio-grid">
         <a href="https://www.youtube.com/watch?v=2TPMgP67z28" target="_blank" class="portfolio-item hidden" style="background-image: url('vlada1.jpg');">
           <div class="play-icon">▶</div>
