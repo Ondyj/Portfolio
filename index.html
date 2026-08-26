@@ -258,6 +258,27 @@
     body.dark-mode .contact-form input, body.dark-mode .contact-form textarea { background: #222; border-color: #444; color: #fff; }
     body.dark-mode .contact-form button { background: #007bff; }
     body.dark-mode .contact-form button:hover { background: #0056b3; }
+
+    .portfolio-item {
+  position: relative; /* Důležité: drží popisek uvnitř odkazu */
+}
+
+.video-label {
+  position: absolute;
+  top: 15px; /* Můžeš zvětšit, pokud to chceš blíž ke středu */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75); /* Poloprůhledné černé pozadí */
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap; /* Zabrání zalomení textu na dva řádky */
+  pointer-events: none; /* Kliknutí projde skrz na video */
+  z-index: 2;
+}
     
     /* Zelená hláška v tmavém režimu */
     body.dark-mode .form-message.success { background: #1b4b2e; color: #8fdfaa; border-color: #286b43; }
@@ -355,7 +376,7 @@
         </a>
       </div>
 
-      <h4 class="portfolio-client-title hidden">Cvočko</h4>
+<h4 class="portfolio-client-title hidden">Cvočko</h4>
       <div class="portfolio-grid">
         <a href="https://www.youtube.com/watch?v=9iy6WJOGr74" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko1.jpg');">
           <div class="play-icon">▶</div>
@@ -364,6 +385,7 @@
           <div class="play-icon">▶</div>
         </a>
         <a href="https://www.youtube.com/watch?v=xDfZIVSJ_TI" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko3.jpg');">
+          <div class="video-label">Dynamický hudební střih</div>
           <div class="play-icon">▶</div>
         </a>
       </div>
@@ -373,6 +395,7 @@
           <div class="play-icon">▶</div>
         </a>
         <a href="https://www.youtube.com/watch?v=aawqFDzqREo&t" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko5.jpg');">
+          <div class="video-label">Multicam edit</div>
           <div class="play-icon">▶</div>
         </a>
       </div>
