@@ -90,17 +90,11 @@
       overflow: hidden;
     }
 
-.portfolio-item-short:hover .play-icon { 
-      background: rgba(0, 123, 255, 0.8); 
-      border-color: #007bff;
-      opacity: 1;
-      transform: scale(1.1); 
-    }
-    
     /* Animace ikonky pro Shorts */
     .portfolio-item-short:hover .play-icon { 
       background: rgba(0, 123, 255, 0.8); 
       border-color: #007bff;
+      opacity: 1;
       transform: scale(1.1); 
     }
 
@@ -148,7 +142,7 @@
 
     /* MŘÍŽKA KLIENTŮ */
     .clients-grid { display: flex; flex-wrap: wrap; gap: 15px; }
-.client-tag {
+    .client-tag {
       background: #f0f0f0; 
       padding: 6px 20px 6px 6px; 
       border-radius: 50px; 
@@ -181,7 +175,7 @@
       transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1);
     }
     
-/* TLAČÍTKO PLAY NA NÁHLEDOVKÁCH */
+    /* TLAČÍTKO PLAY NA NÁHLEDOVKÁCH */
     .play-icon {
       background: rgba(255, 255, 255, 0.15); /* Velmi průhledná vrstva */
       color: white; 
@@ -259,26 +253,44 @@
     body.dark-mode .contact-form button { background: #007bff; }
     body.dark-mode .contact-form button:hover { background: #0056b3; }
 
-.portfolio-item {
-  position: relative; /* Důležité: drží popisek uvnitř odkazu */
-}
+    .portfolio-item {
+      position: relative; /* Důležité: drží popisek uvnitř odkazu */
+    }
 
-.video-label {
-  position: absolute;
-  bottom: 5px; /* Změněno z top na bottom – posune popisek dolů */
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.75); /* Poloprůhledné černé pozadí */
-  color: #ffffff;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-align: center;
-  white-space: nowrap; /* Zabrání zalomení textu na dva řádky */
-  pointer-events: none; /* Kliknutí projde skrz na video */
-  z-index: 2;
-}
+    .video-label {
+      position: absolute;
+      bottom: 5px; /* Změněno z top na bottom – posune popisek dolů */
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.75); /* Poloprůhledné černé pozadí */
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap; /* Zabrání zalomení textu na dva řádky */
+      pointer-events: none; /* Kliknutí projde skrz na video */
+      z-index: 2;
+    }
+    
+    /* BLOCKQUOTE STYLING PRO RECENZI */
+    .review-quote {
+      border-left: 4px solid #007bff;
+      padding-left: 15px;
+      margin-left: 0;
+      font-style: italic;
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 0 12px 12px 0;
+      line-height: 1.7;
+      color: #333;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    body.dark-mode .review-quote {
+      background: #2a2a2a;
+      color: #ddd;
+    }
     
     /* Zelená hláška v tmavém režimu */
     body.dark-mode .form-message.success { background: #1b4b2e; color: #8fdfaa; border-color: #286b43; }
@@ -400,7 +412,7 @@
           <div class="play-icon">▶</div>
         </a>
         <a href="https://www.youtube.com/watch?v=pfmOapmDLWg" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko33.jpg');">
-          <div class="video-label" style="font-size: 0.6rem; padding: 3px 7px;">starší práce/klipy ze streamu</div>
+          <div class="video-label" style="font-size: 0.6rem; padding: 3px 7px; top: 5px; bottom: auto;">starší práce/klipy ze streamu</div>
           <div class="play-icon">▶</div>
         </a>
       </div>
@@ -444,7 +456,7 @@
         </a>
       </div>
 
-<h4 class="portfolio-client-title hidden">Krátká videa (Shorts & Reels)</h4>
+      <h4 class="portfolio-client-title hidden">Krátká videa (Shorts & Reels)</h4>
       <div class="shorts-grid">
         
         <a href="https://www.instagram.com/p/DYjw45-Pi_H/" target="_blank" class="portfolio-item-short hidden" style="background-image: url('touken1.png');">
@@ -463,6 +475,25 @@
           <div class="play-icon">▶</div>
         </a>
         
+      </div>
+
+      <!-- === Kde to všechno začalo (Moje první práce) === -->
+      <h4 class="portfolio-client-title hidden">Kde to všechno začalo (Moje první práce)</h4>
+      <p class="hidden" style="margin-top: -10px; margin-bottom: 15px; font-size: 0.95rem; opacity: 0.8;">
+	Mou první externí zakázkou, kterou mi přinesla moje aktivní tvorba na YT (kanál Cvočko), byl střih traileru na RPG hru Tales of Lyfael. Takhle vypadala zpětná vazba od samotného vývojáře:
+      </p>
+
+      <blockquote class="review-quote hidden">
+        "Ondreja som oslovil na spoluprácu pri tvorbe traileru pre moju RPG hru. Video s trailerom bude aj s hrou zverejnené na Steame a jedná sa z môjho pohľadu o dôležitý marketingový prvok. Svoju úlohu Ondrej zvládol na výbornú, pričom už prvotný nástrel bol veľmi blízko mojim predstavám a zadaným požiadavkám. Okrem samotného výsledku to boli práve komunikácia a dodržiavanie deadlinov, ktoré zdobili našu spoluprácu. So zapracovaním pripomienok a poznámok si taktiež poradil hravo. Ondreja a jeho prácu s editovaním videa a tvorbou traileru môžem na základe tejto skúsenosti odporučiť a pri ďalšom projekte ho opäť rád oslovím."
+        <br><br>
+        <strong style="font-style: normal;">- Bc. Adam Ďurdiak, MBA (Creator of 'Tales of Lyfael')</strong>
+      </blockquote>
+
+<div class="portfolio-grid">
+        <a href="https://store.steampowered.com/app/3613040/Tales_of_Lyfael/" target="_blank" class="portfolio-item hidden" style="background-image: url('lyfael_trailer.jpg'); background-size: contain; background-repeat: no-repeat; background-color: #111;">
+          <div class="video-label" style="font-size: 0.75rem; padding: 4px 8px;">Oficiální Steam Trailer</div>
+          <div class="play-icon">▶</div>
+        </a>
       </div>
 
     </section>
