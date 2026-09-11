@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ondřej Jócsik | Portfolio</title>
+  <title>Cvočko | Portfolio</title>
   <style>
     /* ZÁKLADNÍ STYL */
     html { scroll-behavior: smooth; }
@@ -47,11 +47,66 @@
     .hero {
       height: 100vh; display: flex; flex-direction: column; justify-content: center;
       align-items: center; text-align: center; 
+      /* Výraznější, ale stále čistý gradient pro světlý režim */
       background: linear-gradient(-45deg, #f8f9fa, #e2e8f0, #cbd5e1, #f8f9fa);
       background-size: 400% 400%;
       animation: gradientBG 15s ease infinite; 
       border-bottom: 1px solid #eaeaea; position: relative;
       transition: border-color 0.4s ease;
+    }
+
+    /* PODNADPISY PRO KLIENTY V PORTFOLIu */
+    .portfolio-client-title {
+      margin-top: 40px;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+      color: #111111;
+      border-left: 3px solid #007bff;
+      padding-left: 12px;
+      font-weight: 600;
+      transition: color 0.4s ease;
+    }
+    
+    body.dark-mode .portfolio-client-title { 
+      color: #ffffff; 
+    }
+
+    /* MŘÍŽKA PRO KRÁTKÁ VIDEA (SHORTS / TIKTOK / REELS) */
+    .shorts-grid {
+      display: grid;
+      /* Sloupečky jsou užší (min 140px), aby se jich vešlo víc vedle sebe */
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .portfolio-item-short {
+      display: flex; justify-content: center; align-items: center;
+      background-color: #f0f0f0; border-radius: 12px;
+      aspect-ratio: 9 / 16; /* Klíčový parametr pro formát na výšku */
+      text-decoration: none; color: #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+      background-size: cover; background-position: center; position: relative;
+      overflow: hidden;
+    }
+
+.portfolio-item-short:hover .play-icon { 
+      background: rgba(0, 123, 255, 0.8); 
+      border-color: #007bff;
+      opacity: 1;
+      transform: scale(1.1); 
+    }
+    
+    /* Animace ikonky pro Shorts */
+    .portfolio-item-short:hover .play-icon { 
+      background: rgba(0, 123, 255, 0.8); 
+      border-color: #007bff;
+      transform: scale(1.1); 
+    }
+
+    /* Dark mode pro Shorts */
+    body.dark-mode .portfolio-item-short { 
+      background-color: #2a2a2a; 
     }
     
     .hero h1 { font-size: 4.5rem; margin: 0; font-weight: 800; letter-spacing: -1px; color: #111111; transition: color 0.4s ease; }
@@ -70,6 +125,7 @@
     .hidden { 
       opacity: 0; 
       transform: translateY(50px); 
+      /* Změněno z 0.6s na 1.2s pro nádherně plynulé a měkké vplutí */
       transition: all 1.2s cubic-bezier(0.23, 1, 0.32, 1); 
     }
     .show { opacity: 1; transform: translateY(0); }
@@ -81,40 +137,101 @@
     }
     .section-box h3 { margin-top: 0; font-size: 1.8rem; color: #111111; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 25px; transition: color 0.4s ease, border-color 0.4s ease; }
 
+    .client-avatar {
+      width: 24px;  /* Zmenšená šířka */
+      height: 24px; /* Zmenšená výška (musí být stejná jako šířka pro dokonalý kruh) */
+      border-radius: 50%; /* Tohle ořízne obrázek do perfektního kruhu */
+      object-fit: cover; /* Zabrání deformaci obrázku, pokud by nebyl čtvercový */
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Velmi jemný stín pro hloubku */
+      flex-shrink: 0; /* Zabrání smrsknutí ikonky, když je text moc dlouhý */
+    }
+
     /* MŘÍŽKA KLIENTŮ */
-    .clients-grid { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; }
-    .client-tag {
-      background: #f0f0f0; padding: 10px 20px; border-radius: 50px; font-weight: 600;
-      color: #333; transition: background 0.3s ease, color 0.3s ease;
+    .clients-grid { display: flex; flex-wrap: wrap; gap: 15px; }
+.client-tag {
+      background: #f0f0f0; 
+      padding: 6px 20px 6px 6px; 
+      border-radius: 50px; 
+      font-weight: 600;
+      color: #333; 
+      text-decoration: none; /* <-- Tohle zabrání podtržení textu odkazu */
+      transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     /* MŘÍŽKA YOUTUBE VIDEÍ (PORTFOLIO) */
     .portfolio-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
     }
     .portfolio-item {
-      display: block; background-color: #f0f0f0; border-radius: 12px; aspect-ratio: 16 / 9;
-      text-decoration: none; color: #333; transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background-size: cover; background-position: center;
+      display: flex; justify-content: center; align-items: center;
+      background-color: #f0f0f0; border-radius: 12px;
+      aspect-ratio: 16 / 9;
+      text-decoration: none; color: #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+      background-size: cover; background-position: center; position: relative;
+      overflow: hidden;
     }
-    .portfolio-item:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+    .portfolio-item:hover {
+      transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    }
+    
+/* TLAČÍTKO PLAY NA NÁHLEDOVKÁCH */
+    .play-icon {
+      background: rgba(255, 255, 255, 0.15); /* Velmi průhledná vrstva */
+      color: white; 
+      border-radius: 50%;
+      width: 56px; 
+      height: 56px; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center;
+      font-size: 1.5rem; 
+      backdrop-filter: blur(2px); /* Jemné rozostření pouze pod samotným tlačítkem */
+      -webkit-backdrop-filter: blur(2px);
+      border: 2px solid rgba(255, 255, 255, 0.6); /* Tenký bílý okraj */
+      text-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Stín pro šipku, aby byla čitelná */
+      transition: all 0.3s ease;
+      
+      /* NOVÉ: Schování tlačítka na začátku */
+      opacity: 0; 
+      transform: scale(0.8); /* Tlačítko je na začátku lehce zmenšené */
+    }
+    
+    .portfolio-item:hover .play-icon { 
+      background: rgba(0, 123, 255, 0.8); /* Při najetí zmodrá */
+      border-color: #007bff;
+      
+      /* NOVÉ: Zobrazení tlačítka a jeho zvětšení */
+      opacity: 1; 
+      transform: scale(1.1); /* Efektně se mírně zvětší a vyskočí */
+    }
 
     /* KONTAKTNÍ FORMULÁŘ */
     .contact-form { display: flex; flex-direction: column; gap: 15px; }
     .contact-form input, .contact-form textarea {
       width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px;
-      font-family: inherit; font-size: 1rem; box-sizing: border-box; background: #fafafa; transition: border 0.3s;
+      font-family: inherit; font-size: 1rem; box-sizing: border-box;
+      background: #fafafa; transition: border 0.3s, background 0.4s, color 0.4s;
     }
     .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: #007bff; }
     .contact-form button {
-      padding: 15px 30px; font-size: 1rem; font-weight: 600; color: #fff; background: #000;
-      border: none; border-radius: 50px; cursor: pointer; transition: background 0.3s, transform 0.3s;
-      margin-top: 10px; align-self: flex-start;
+      padding: 15px 30px; font-size: 1rem; font-weight: 600; color: #fff;
+      background: #000; border: none; border-radius: 50px; cursor: pointer;
+      transition: background 0.3s, transform 0.3s; margin-top: 10px; align-self: flex-start;
     }
     .contact-form button:hover { background: #333; transform: translateY(-2px); }
     
     /* Hláška o úspěšném odeslání */
-    .form-message { display: none; padding: 15px; border-radius: 8px; margin-top: 10px; font-weight: 600; text-align: center; }
+    .form-message {
+      display: none; padding: 15px; border-radius: 8px; margin-top: 10px;
+      font-weight: 600; text-align: center;
+    }
     .form-message.success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
     .form-message.error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
 
@@ -124,9 +241,11 @@
     body.dark-mode .nav-logo, body.dark-mode #navbar a.text-link, body.dark-mode .nav-icon, body.dark-mode .theme-toggle { color: #ffffff; }
     body.dark-mode #navbar a.text-link:hover, body.dark-mode .nav-icon:hover, body.dark-mode .theme-toggle:hover { color: #007bff; }
     
+    /* Tmavý režim - mnohem luxusnější a výraznější gradient (noční modrá/fialová) */
     body.dark-mode .hero { 
       background: linear-gradient(-45deg, #0f172a, #1e1b4b, #172554, #0f172a);
-      background-size: 400% 400%; border-bottom: 1px solid #222222; 
+      background-size: 400% 400%;
+      border-bottom: 1px solid #222222; 
     }
     body.dark-mode .hero h1 { color: #ffffff; }
     
@@ -134,10 +253,34 @@
     body.dark-mode .section-box h3 { color: #ffffff; border-bottom: 2px solid #333333; }
     
     body.dark-mode .client-tag { background: #333; color: #ddd; }
+    body.dark-mode .portfolio-item { background-color: #2a2a2a; }
     
     body.dark-mode .contact-form input, body.dark-mode .contact-form textarea { background: #222; border-color: #444; color: #fff; }
     body.dark-mode .contact-form button { background: #007bff; }
     body.dark-mode .contact-form button:hover { background: #0056b3; }
+
+.portfolio-item {
+  position: relative; /* Důležité: drží popisek uvnitř odkazu */
+}
+
+.video-label {
+  position: absolute;
+  bottom: 5px; /* Změněno z top na bottom – posune popisek dolů */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75); /* Poloprůhledné černé pozadí */
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap; /* Zabrání zalomení textu na dva řádky */
+  pointer-events: none; /* Kliknutí projde skrz na video */
+  z-index: 2;
+}
+    
+    /* Zelená hláška v tmavém režimu */
     body.dark-mode .form-message.success { background: #1b4b2e; color: #8fdfaa; border-color: #286b43; }
   </style>
 </head>
@@ -146,17 +289,11 @@
   <nav id="navbar">
     <div class="nav-logo">OJ.</div>
     <div class="nav-links">
-      <a href="#o-mne" class="text-link">O mně</a>
+      <a href="#klienti" class="text-link">Tvůrci</a>
       <a href="#portfolio" class="text-link">Portfolio</a>
       <a href="#kontakt" class="text-link">Kontakt</a>
     </div>
     <div class="nav-right">
-      <a href="https://www.youtube.com/@Cvocko" target="_blank" class="nav-icon" aria-label="YouTube">
-        <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2C1 8.13 1 12 1 12s0 3.87.46 5.58a2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2C23 15.87 23 12 23 12s0-3.87-.46-5.58z"></path>
-          <polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"></polygon>
-        </svg>
-      </a>
       <button class="theme-toggle" id="theme-btn" aria-label="Přepnout tmavý režim">
         <svg class="icon-moon" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -178,57 +315,184 @@
 
   <header class="hero">
     <h1>Ondřej Jócsik</h1>
-    <div class="subtitle">"edity tvořené s láskou ❤️"</div>
+    <div class="subtitle">"Edity tvořené s láskou ❤️"</div>
     <div class="scroll-indicator">↓</div>
   </header>
 
   <div class="container">
     
-    <section id="o-mne" class="section-box hidden">
+    <section class="section-box hidden">
       <h3>O mně</h3>
       <p>Střihu videa se naplno věnuji poslední dva roky. Jsem samostatný, pracovitý a nedělá mi nejmenší problém se rychle přizpůsobit jakémukoliv vizuálnímu stylu. Mým cílem je vždy doručit výsledek, se kterým bude klient spokojen. Své projekty stříhám a kompletně zpracovávám v <strong>DaVinci Resolve Studio</strong>.</p>
     </section>
 
-    <section id="portfolio" class="section-box hidden">
-      <h3>Pro koho jsem stříhal</h3>
-      <div class="clients-grid">
-        <div class="client-tag hidden">Jméno Klienta 1</div>
-        <div class="client-tag hidden">Jméno Klienta 2</div>
-        <div class="client-tag hidden">Jméno Klienta 3</div>
-      </div>
+<section id="klienti" class="section-box hidden">
+      <h3>Pro koho jsem stříhal/stříhám</h3>
+      <p>Během své praxe jsem měl možnost podílet se na tvorbě videí pro tyto tvůrce:</p>
       
-      <h3>Ukázky práce</h3>
-      <div class="portfolio-grid">
-        <a href="ODKAZ_NA_YT_VIDEO_1" target="_blank" class="portfolio-item hidden" style="background-image: url('https://img.youtube.com/vi/ID_TVEHO_VIDEA/maxresdefault.jpg');"></a>
-        <a href="ODKAZ_NA_YT_VIDEO_2" target="_blank" class="portfolio-item hidden" style="background-image: url('https://img.youtube.com/vi/ID_TVEHO_VIDEA/maxresdefault.jpg');"></a>
-        <a href="ODKAZ_NA_YT_VIDEO_3" target="_blank" class="portfolio-item hidden" style="background-image: url('https://img.youtube.com/vi/ID_TVEHO_VIDEA/maxresdefault.jpg');"></a>
-        <a href="ODKAZ_NA_YT_VIDEO_4" target="_blank" class="portfolio-item hidden" style="background-image: url('https://img.youtube.com/vi/ID_TVEHO_VIDEA/maxresdefault.jpg');"></a>
+      <div class="clients-grid">
+        
+        <a href="https://www.youtube.com/@Kamilius1" target="_blank" class="client-tag hidden">
+          <img src="kamil.jpg" alt="Kamilius1" class="client-avatar">
+          Kamilius1 (10/2025 – 03/2026)
+        </a>
+        
+        <a href="https://www.youtube.com/@Cvocko" target="_blank" class="client-tag hidden">
+          <img src="cvocko.jpg" alt="Restt" class="client-avatar">
+          Restt (Kanál Cvočko)
+        </a>
+        
+        <a href="https://www.youtube.com/@VladaKadlecDaily" target="_blank" class="client-tag hidden">
+          <img src="vlada.jpg" alt="Vláďa Kadlec" class="client-avatar">
+          Vlada Kadlec Daily
+        </a>
+
+        <a href="https://www.instagram.com/touken.clips/" target="_blank" class="client-tag hidden">
+          <img src="touken.jpg" alt="Touken" class="client-avatar">
+          Touken (Instagram reels)
+        </a>
+
+        <a href="https://www.youtube.com/@ResttDaily/" target="_blank" class="client-tag hidden">
+          <img src="restt.jpg" alt="Restt" class="client-avatar">
+          Restt Daily
+        </a>
+        
       </div>
     </section>
 
+<section id="portfolio" class="section-box hidden">
+      <h3>Ukázky práce</h3>
+
+<h4 class="portfolio-client-title hidden">Cvočko</h4>
+<div class="portfolio-grid">
+        <a href="https://www.youtube.com/watch?v=9iy6WJOGr74" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko1.jpg');">
+          <div class="video-label" style="font-size: 0.6rem; padding: 3px 7px;">thumbnail design</div>
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=L_OZv2hIMiE&t" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko22.jpg');">
+          <div class="video-label" style="font-size: 0.6rem; padding: 3px 7px;">multicam</div>
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=-QBvK5GDUMI" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko4.jpg');">
+          <div class="video-label" style="font-size: 0.6rem; padding: 3px 7px;">kreativní montáž</div>
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+      <div class="portfolio-grid">
+        <a href="https://www.youtube.com/watch?v=xDfZIVSJ_TI" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko3.jpg');">
+          <div class="video-label">Dynamický hudební střih s dotáčením scén</div>
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=aawqFDzqREo&t" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko5.jpg');">
+          <div class="video-label">Multicam střih ze 4 pohledů</div>
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+  <div class="portfolio-grid">
+        <a href="https://www.youtube.com/watch?v=9iy6WJOGr74" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko11.jpg');">
+          <div class="video-label" style="font-size: 0.6rem; padding: 3px 7px;">thumbnail design/multicam</div>
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=RxyS1LwM1bo" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko222.jpg');">
+          <div class="video-label" style="font-size: 0.6rem; padding: 3px 7px;">starší práce/kreativita</div>
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=pfmOapmDLWg" target="_blank" class="portfolio-item hidden" style="background-image: url('cvocko33.jpg');">
+          <div class="video-label" style="font-size: 0.6rem; padding: 3px 7px;">starší práce/klipy ze streamu</div>
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+        <h4 class="portfolio-client-title hidden">Kamilius1</h4>
+      <div class="portfolio-grid">
+        <a href="https://www.youtube.com/watch?v=dlQFVXs0JQE" target="_blank" class="portfolio-item hidden" style="background-image: url('kamil1.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=RhxZXgmJV4A" target="_blank" class="portfolio-item hidden" style="background-image: url('kamil2.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=SSxBGAp44Jc&t" target="_blank" class="portfolio-item hidden" style="background-image: url('kamil3.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+      <h4 class="portfolio-client-title hidden">Restt Daily (Každodenní Stream VODs/Základní střih)</h4>
+      <div class="portfolio-grid">
+        <a href="https://www.youtube.com/watch?v=Fy_pCWBofWU" target="_blank" class="portfolio-item hidden" style="background-image: url('restt1.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=6ZOpLOO7iAM&t" target="_blank" class="portfolio-item hidden" style="background-image: url('restt2.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=2ufIgCA4xkI" target="_blank" class="portfolio-item hidden" style="background-image: url('restt3.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+      <h4 class="portfolio-client-title hidden">Vláďa Kadlec Daily (Každodenní Stream VODs/Základní střih)</h4>
+      <div class="portfolio-grid">
+        <a href="https://www.youtube.com/watch?v=2TPMgP67z28" target="_blank" class="portfolio-item hidden" style="background-image: url('vlada1.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=0TQvXwyB7JA" target="_blank" class="portfolio-item hidden" style="background-image: url('vlada2.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+        <a href="https://www.youtube.com/watch?v=sS2dNqimLAU" target="_blank" class="portfolio-item hidden" style="background-image: url('vlada3.jpg');">
+          <div class="play-icon">▶</div>
+        </a>
+      </div>
+
+<h4 class="portfolio-client-title hidden">Krátká videa (Shorts & Reels)</h4>
+      <div class="shorts-grid">
+        
+        <a href="https://www.instagram.com/p/DYjw45-Pi_H/" target="_blank" class="portfolio-item-short hidden" style="background-image: url('touken1.png');">
+          <div class="play-icon">▶</div>
+        </a>
+        
+        <a href="https://www.instagram.com/p/DaK0XsUvazo/" target="_blank" class="portfolio-item-short hidden" style="background-image: url('touken2.png');">
+          <div class="play-icon">▶</div>
+        </a>
+        
+        <a href="https://www.instagram.com/p/DZFd5FePndp/" target="_blank" class="portfolio-item-short hidden" style="background-image: url('touken3.png');">
+          <div class="play-icon">▶</div>
+        </a>
+        
+        <a href="https://www.instagram.com/p/DXokDqhD3L8/" target="_blank" class="portfolio-item-short hidden" style="background-image: url('touken4.png');">
+          <div class="play-icon">▶</div>
+        </a>
+        
+      </div>
+
+    </section>
+
     <section id="kontakt" class="section-box hidden">
-      <h3>Kontakt & Spolupráce</h3>
+      <h3>Kontaktujte mě</h3>
+      <p>Máš zájem o spolupráci, nebo potřebuješ sestříhat video? Napiš mi přímo přes tento formulář.</p>
+      
       <form id="contact-form" action="https://formsubmit.co/cvockoedits@gmail.com" method="POST" class="contact-form">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="Jméno" placeholder="Vaše jméno" required>
         <input type="email" name="Email" placeholder="Váš e-mail pro odpověď" required>
         <textarea name="Zpráva" placeholder="Popište mi, s čím potřebujete pomoct..." rows="5" required></textarea>
         <button type="submit">Odeslat zprávu</button>
+        
         <div id="form-message" class="form-message"></div>
       </form>
     </section>
-    
+
   </div>
 
   <script>
-    // 1. Logika pro vyjížděcí navigační lištu
+    // 1. Logika pro navigační lištu
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) { navbar.classList.add('scrolled'); } 
       else { navbar.classList.remove('scrolled'); }
     });
 
-    // 2. Logika pro objevování sekcí
+    // 2. Logika pro pomalejší objevování sekcí
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -242,33 +506,41 @@
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
 
-    // 3. Logika pro Dark Mode a SVG ikony
+    // 3. Logika pro Dark Mode
     const themeBtn = document.getElementById('theme-btn');
     themeBtn.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
     });
 
-    // 4. Odesílání formuláře bez přesměrování (AJAX)
+    // 4. AJAX odesílání formuláře (bez přesměrování na anglickou stránku)
     const form = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
 
     form.addEventListener('submit', function(e) {
-      e.preventDefault(); 
+      e.preventDefault(); // Zabrání standardnímu odeslání a přesměrování
+      
       const formData = new FormData(form);
       
+      // Odešle data na pozadí
       fetch(form.action, {
         method: 'POST',
         body: formData,
-        headers: { 'Accept': 'application/json' }
+        headers: {
+          'Accept': 'application/json'
+        }
       })
       .then(response => {
         if (response.ok) {
-          formMessage.textContent = 'Úspěšně odesláno! Co nejdříve se vám ozvu.';
+          // Úspěšně odesláno
+          formMessage.textContent = 'Úspěšně odesláno! Co nejdříve vám odepíši.';
           formMessage.className = 'form-message success';
           formMessage.style.display = 'block';
-          form.reset();
+          form.reset(); // Vymaže pole formuláře
+          
+          // Hláška zmizí po 5 sekundách
           setTimeout(() => { formMessage.style.display = 'none'; }, 5000);
         } else {
+          // Chyba při odesílání
           formMessage.textContent = 'Jejda, někde nastala chyba. Zkuste to prosím znovu.';
           formMessage.className = 'form-message error';
           formMessage.style.display = 'block';
@@ -281,5 +553,6 @@
       });
     });
   </script>
+
 </body>
 </html>
